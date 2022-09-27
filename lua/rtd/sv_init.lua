@@ -11,8 +11,9 @@ local function RTDCommand(ply, msg)
   local rtdSelector = math.random(#RTD.Events)
   local eventKeys = table.GetKeys(RTD.Events)
   local event = eventKeys[rtdSelector]
+  event = RTD.Events[event]
 
-  RTD.Events[event](ply)
+  event["func"](ply)
   RTD:ChatLog(ply, event)
 
   return false

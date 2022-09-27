@@ -4,16 +4,17 @@ local function burnEventFunc(calling_ply)
 
   hook.Add("EntityTakeDamage", "VoidIgniteDamage", function(entity, damage)
     return entity:IsPlayer() and damage:IsDamageType(DMG_BURN)
-  end )
-  
+  end)
+
   timer.Simple(5, function()
     hook.Remove("EntityTakeDamage", "VoidIgniteDamage")
-  end )
+  end)
 end
 
 local burnEvent = {
-  eventFunc=burnEventFunc,
-  eventName="rtd_burn"
+  func = burnEventFunc,
+  name = "rtd_burn",
+  descriptor = "a body full of fire!"
 }
 
 RTD:RegisterEvent(burnEvent)

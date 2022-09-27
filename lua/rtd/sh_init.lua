@@ -15,16 +15,16 @@ if CLIENT then
 end
 
 function RTD:RegisterEvent(event)
-  local eventName = event["eventName"]
-  local eventFunc = event["eventFunc"]
+  local eventName = event["name"]
+  local eventFunc = event["func"]
+  local eventDescriptor = event["descriptor"]
 
-  if not (RTD.Events[eventName] == nil) then
-    return
-  end
+  if not (RTD.Events[eventName] == nil) then return end
 
   RTD.Events[eventName] = {
     func = eventFunc,
-    descriptor = "Yes"
+    name = eventName,
+    descriptor = eventDescriptor,
   }
 
   print(RTD.LogPrefix .. " Initialized " .. eventName .. " event.")
