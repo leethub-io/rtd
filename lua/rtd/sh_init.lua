@@ -6,18 +6,30 @@ local function Burn(calling_ply)
 end
 
 RTD = {}
-RTD.Prefix = "!"
-RTD.Command = "rtd"
 RTD.Events = {}
 
 function RTD:RegisterEvent(eventFunc, eventName)
   if not (RTD.Events[eventName] == nil) then return end
 
   RTD.Events[eventName] = eventFunc
-  print ("[RTD] Initialized " .. eventName .. " event.")
+  print (RTD.LogPrefix .. " Initialized " .. eventName .. " event.")
 end
 
 function RTD:Initialize()
+  -- Include required modules for shared realms
+  if SERVER then 
+    AddCSLuaFile("rtd/sh_config.lua")
+    AddCSLuaFile("rtd/cl_log.lua")
+    include("rtd/sh_config.lua")
+    include("rtd/sv_log.lua")
+  end
+
+  if CLIENT then
+    include("rtd/sh_config.lua")
+    include("rtd/cl_log.lua")
+  end
+
+  -- Include required modules for events
   local _, dirs = file.Find("rtd/events/*", "LUA")
   for _, eventDir in pairs(dirs) do
       local event, _ = file.Find("rtd/events/" .. eventDir .. "/*.lua", "LUA")
@@ -46,7 +58,7 @@ function RTD:Initialize()
       end
   end
 
-  print ("[RTD] Finished initializing.")
+  print (RTD.LogPrefix .. " Finished initializing.")
 end
 
 

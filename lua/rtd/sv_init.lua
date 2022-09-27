@@ -9,8 +9,9 @@ local function RTDCommand(ply, msg)
   local event = eventKeys[rtdSelector]
 
   RTD.Events[event](ply)
+  RTD:ChatLog(ply, event)
 
-  return rtdSelector
+  return false
 end
 
 hook.Add("PlayerSay", "RTDCommand", RTDCommand)
