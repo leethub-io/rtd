@@ -3,7 +3,7 @@ local pl = FindMetaTable("Player")
 function pl:StartRTDCooldown()
   self.RTDCooldownActive = true
 
-  timer.Create("StopRTDCooldown", 5, 1, function()
+  timer.Create("StopRTDCooldown", RTD.CooldownTime, 1, function()
     self.RTDCooldownActive = false
   end )
 end
