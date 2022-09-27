@@ -5,13 +5,16 @@ RTD.Events = {}
 if SERVER then
   AddCSLuaFile("rtd/sh_config.lua")
   AddCSLuaFile("rtd/cl_log.lua")
+  AddCSLuaFile("rtd/sh_player.lua")
   include("rtd/sh_config.lua")
   include("rtd/sv_log.lua")
+  include("rtd/sh_player.lua")
 end
 
 if CLIENT then
   include("rtd/sh_config.lua")
   include("rtd/cl_log.lua")
+  include("rtd/sh_player.lua")
 end
 
 function RTD:RegisterEvent(event)
