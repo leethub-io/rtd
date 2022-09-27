@@ -1,11 +1,6 @@
 -- Event function
-local function burnEventFunc()
-  return "Burn"
+local function burnEventFunc(calling_ply)
+  calling_ply:Say("Gee, I'm feeling pretty hot.")
 end
 
--- Event config
-local burnEvent = {
-  rtd_burn = burnEventFunc
-}
-
-RTD:RegisterEvent(burnEvent, "rtd_burn")
+RTD:RegisterEvent(burnEventFunc, "rtd_burn")

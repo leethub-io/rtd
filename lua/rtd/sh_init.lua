@@ -9,23 +9,12 @@ RTD = {}
 RTD.Prefix = "!"
 RTD.Command = "rtd"
 RTD.Events = {}
--- RTD.Events = {
---   {
---     name = "rtd_burn",
---     func = Burn
---   },
---   {
---     name = "rtd_fast",
---     func = Burn
---   }
--- }
 
-function RTD:RegisterEvent(event, eventName)
-  if not (istable(event)) then return end  
+function RTD:RegisterEvent(eventFunc, eventName)
   if not (RTD.Events[eventName] == nil) then return end
 
-  table.insert(RTD.Events, event)
-  print ("[RTD] Event Registered")
+  RTD.Events[eventName] = eventFunc
+  print ("[RTD] Initialized " .. eventName .. " event.")
 end
 
 function RTD:Initialize()
@@ -56,6 +45,8 @@ function RTD:Initialize()
 
       end
   end
+
+  print ("[RTD] Finished initializing.")
 end
 
 

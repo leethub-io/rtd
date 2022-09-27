@@ -4,12 +4,13 @@ local function RTDCommand(ply, msg)
   
   if not (prefix == RTD.Prefix and content == RTD.Command) then return end
   if not (ply:Alive()) then return end
-  local rtdSelector = math.random(1)
+  local rtdSelector = math.random(#RTD.Events)
+  local eventKeys = table.GetKeys(RTD.Events)
+  local event = eventKeys[rtdSelector]
 
-  local eventName = "rtd_burn"
-  PrintTable(RTD.Events)
-  return "Hello"
-  --return RTD.Events[rtdSelector]["func"](ply)
+  RTD.Events[event](ply)
+
+  return rtdSelector
 end
 
 hook.Add("PlayerSay", "RTDCommand", RTDCommand)
